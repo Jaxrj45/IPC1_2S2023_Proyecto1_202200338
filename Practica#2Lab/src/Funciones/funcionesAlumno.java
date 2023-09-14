@@ -20,8 +20,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import objetos.Actividad;
 import objetos.Alumno;
 import objetos.Curso;
+import objetos.NotaAlumno;
+import static vistasProfesor.AdministracionCurso.listaA;
+import static vistasProfesor.AdministracionCurso.listaPosicion;
 
 /**
  *
@@ -206,9 +210,70 @@ public class funcionesAlumno {
         alumnoActualizar.setPassword(password);
         alumnoActualizar.setGenero(Genero);
         JOptionPane.showMessageDialog(null, "Datos Actualizados");
+
+    }
+
+    public static void devolverPromedioAlumno(int codigoC) {
+
+        float prome = 0;
+        int contador=-1;
+        
+        
+        
+        for (Alumno a : listaAlumnos) {
+            contador++;
+            listaPosicion[contador]=a.getCodigo();
+            int alumn=a.getCodigo();
+            prome=0;
+            for (Curso c : a.getListaCursosAsignados()) {
+                if (c.getCodigo() == codigoC) {
+                    for (Actividad ac : c.getListaActividades()) {
+                        
+                        for (NotaAlumno na : ac.getListaNotas()) {
+                            if(alumn==na.getCodigoAlumno()){
+                               
+                                
+                                prome=prome+na.getNotaActividad();
+                               
+                                listaA[contador]=prome;
+                           
+                                
+                               
+                            }
+                             
+                        }
+                    }
+                }
+            }
+        }
+        
+        //Ordenando los promedios
+        for (int i = 0; i < listaA.length; i++) {
+
+            for (int j = 0; j < listaA.length - 1; j++) {
+
+                if (listaA[j] < listaA[j + 1]) {
+                    float temporal = listaA[j];
+                    listaA[j] = listaA[j + 1];
+                    listaA[j + 1] = temporal;
+                    
+                   temporal = listaPosicion[j];
+                    listaPosicion[j] = listaPosicion[j + 1];
+                    listaPosicion[j + 1] =(int) temporal;
+                }
+            }
+        }
+        
+        for (int i = 0; i < listaA.length; i++) {
+            System.out.println(listaA[i]+"Alumno"+listaPosicion[i]);
+        }
+        
+        
+    }
+
+    public static void ordenarPromedioAl(){
+        
         
     }
     
-    
-
 }

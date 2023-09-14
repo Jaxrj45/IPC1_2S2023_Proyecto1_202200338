@@ -46,6 +46,8 @@ public class AdministracionCurso extends javax.swing.JFrame {
     public static Alumno cargarAlumno = null;
     public static NotaAlumno subirNotasAlumno = new NotaAlumno();
     public static Binario bin;
+    public static float[] listaA = new float[listaAlumnos.size()];
+    public static int [] listaPosicion = new int[listaAlumnos.size()];
 
     public AdministracionCurso() {
         initComponents();
@@ -306,6 +308,11 @@ public class AdministracionCurso extends javax.swing.JFrame {
         });
 
         jButton3.setText("Top 5 - Estudiantes con Mejor Promedio");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Top 5 - Estudiantes con Peor Promedio");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -501,7 +508,7 @@ public class AdministracionCurso extends javax.swing.JFrame {
 
                 contador++;
                 String arregloNotas[] = linea.split(",");
-                if (arregloNotas.length >= 2) {
+                if (arregloNotas.length == 2) {
                     // Actividad actividad = new Actividad();
 
                     boolean alumnoEncontrado = buscarcodigoAlumno((Integer.parseInt(arregloNotas[0])));
@@ -631,6 +638,11 @@ public class AdministracionCurso extends javax.swing.JFrame {
         mp.dispose();
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        PromedioAlto pa= new PromedioAlto();
+        pa.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
