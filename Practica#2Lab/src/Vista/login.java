@@ -7,6 +7,7 @@ package Vista;
 import Funciones.funcionesAlumno;
 import static Funciones.funcionesAlumno.buscarAlumno;
 import static Funciones.funcionesAlumno.devolverPromedioAlumno;
+import static Funciones.funcionesAlumno.devolverPromedioAlumnoBajo;
 import Funciones.funcionesUsuario;
 import javax.swing.JOptionPane;
 import vistasAlumno.moduloAlumno;
@@ -172,7 +173,7 @@ public class login extends javax.swing.JFrame {
         boolean vistaP = funcionesUsuario.mostrarVentanaProfesor(usuarioIngresado, passwordIngresado);
         boolean vistaU = funcionesAlumno.mostrarVentanaAlumno(usuarioIngresado, passwordIngresado);
         
-        devolverPromedioAlumno(1);
+        devolverPromedioAlumnoBajo(1);
         
         if (codigoAdmin.equals(usuarioIngresado) && passwordAdmin.equals(passwordIngresado)) {
 
